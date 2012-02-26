@@ -1,0 +1,59 @@
+<h1>Listing stakeholders</h1>
+
+<table>
+  <tr>
+    <th>Organisation</th>
+    <th>Address1</th>
+    <th>Address2</th>
+    <th>Address3</th>
+    <th>Suburb</th>
+    <th>State</th>
+    <th>Postcode</th>
+    <th>Post address1</th>
+    <th>Post address2</th>
+    <th>Post address3</th>
+    <th>Post suburb</th>
+    <th>Post state</th>
+    <th>Post postcode</th>
+    <th>Phone1</th>
+    <th>Phone2</th>
+    <th>Fax</th>
+    <th>Email</th>
+    <th>Website</th>
+    <th>Notes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stakeholders.each do |stakeholder| %>
+  <tr>
+    <td><%= stakeholder.organisation %></td>
+    <td><%= stakeholder.address1 %></td>
+    <td><%= stakeholder.address2 %></td>
+    <td><%= stakeholder.address3 %></td>
+    <td><%= stakeholder.suburb %></td>
+    <td><%= stakeholder.state %></td>
+    <td><%= stakeholder.postcode %></td>
+    <td><%= stakeholder.post_address1 %></td>
+    <td><%= stakeholder.post_address2 %></td>
+    <td><%= stakeholder.post_address3 %></td>
+    <td><%= stakeholder.post_suburb %></td>
+    <td><%= stakeholder.post_state %></td>
+    <td><%= stakeholder.post_postcode %></td>
+    <td><%= stakeholder.phone1 %></td>
+    <td><%= stakeholder.phone2 %></td>
+    <td><%= stakeholder.fax %></td>
+    <td><%= stakeholder.email %></td>
+    <td><%= stakeholder.website %></td>
+    <td><%= stakeholder.notes %></td>
+    <td><%= link_to 'Show', stakeholder %></td>
+    <td><%= link_to 'Edit', edit_stakeholder_path(stakeholder) %></td>
+    <td><%= link_to 'Destroy', stakeholder, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stakeholder', new_stakeholder_path %>

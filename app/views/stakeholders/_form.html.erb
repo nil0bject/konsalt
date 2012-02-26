@@ -1,0 +1,93 @@
+<%= form_for(@stakeholder) do |f| %>
+  <% if @stakeholder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stakeholder.errors.count, "error") %> prohibited this stakeholder from being saved:</h2>
+
+      <ul>
+      <% @stakeholder.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :organisation %><br />
+    <%= f.text_field :organisation %>
+  </div>
+  <div class="field">
+    <%= f.label :address1 %><br />
+    <%= f.text_field :address1 %>
+  </div>
+  <div class="field">
+    <%= f.label :address2 %><br />
+    <%= f.text_field :address2 %>
+  </div>
+  <div class="field">
+    <%= f.label :address3 %><br />
+    <%= f.text_field :address3 %>
+  </div>
+  <div class="field">
+    <%= f.label :suburb %><br />
+    <%= f.text_field :suburb %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </div>
+  <div class="field">
+    <%= f.label :postcode %><br />
+    <%= f.text_field :postcode %>
+  </div>
+  <div class="field">
+    <%= f.label :post_address1 %><br />
+    <%= f.text_field :post_address1 %>
+  </div>
+  <div class="field">
+    <%= f.label :post_address2 %><br />
+    <%= f.text_field :post_address2 %>
+  </div>
+  <div class="field">
+    <%= f.label :post_address3 %><br />
+    <%= f.text_field :post_address3 %>
+  </div>
+  <div class="field">
+    <%= f.label :post_suburb %><br />
+    <%= f.text_field :post_suburb %>
+  </div>
+  <div class="field">
+    <%= f.label :post_state %><br />
+    <%= f.text_field :post_state %>
+  </div>
+  <div class="field">
+    <%= f.label :post_postcode %><br />
+    <%= f.text_field :post_postcode %>
+  </div>
+  <div class="field">
+    <%= f.label :phone1 %><br />
+    <%= f.text_field :phone1 %>
+  </div>
+  <div class="field">
+    <%= f.label :phone2 %><br />
+    <%= f.text_field :phone2 %>
+  </div>
+  <div class="field">
+    <%= f.label :fax %><br />
+    <%= f.text_field :fax %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :website %><br />
+    <%= f.text_field :website %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br />
+    <%= f.text_field :notes %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

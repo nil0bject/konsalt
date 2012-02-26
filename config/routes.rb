@@ -1,4 +1,22 @@
 Konsalt::Application.routes.draw do
+  resources :correspondences
+
+  resources :risks
+
+  resources :staffs
+
+  resources :correspondence_types
+
+  resources :projects do
+    resources :representatives
+  end
+
+  resources :representatives
+
+  resources :stakeholders do
+    resources :representatives
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +66,7 @@ Konsalt::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'application#index'
 
   # See how all your routes lay out with "rake routes"
 

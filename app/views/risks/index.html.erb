@@ -1,0 +1,23 @@
+<h1>Listing risks</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @risks.each do |risk| %>
+  <tr>
+    <td><%= risk.name %></td>
+    <td><%= link_to 'Show', risk %></td>
+    <td><%= link_to 'Edit', edit_risk_path(risk) %></td>
+    <td><%= link_to 'Destroy', risk, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Risk', new_risk_path %>

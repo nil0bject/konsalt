@@ -1,0 +1,23 @@
+<h1>Listing correspondence_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @correspondence_types.each do |correspondence_type| %>
+  <tr>
+    <td><%= correspondence_type.name %></td>
+    <td><%= link_to 'Show', correspondence_type %></td>
+    <td><%= link_to 'Edit', edit_correspondence_type_path(correspondence_type) %></td>
+    <td><%= link_to 'Destroy', correspondence_type, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Correspondence type', new_correspondence_type_path %>

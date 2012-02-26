@@ -1,0 +1,31 @@
+<h1>Listing representatives</h1>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Surname</th>
+    <th>Stakeholder</th>
+    <th>Mobile</th>
+    <th>Notes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @representatives.each do |representative| %>
+  <tr>
+    <td><%= representative.first_name %></td>
+    <td><%= representative.surname %></td>
+    <td><%= representative.stakeholder %></td>
+    <td><%= representative.mobile %></td>
+    <td><%= representative.notes %></td>
+    <td><%= link_to 'Show', representative %></td>
+    <td><%= link_to 'Edit', edit_representative_path(representative) %></td>
+    <td><%= link_to 'Destroy', representative, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Representative', new_representative_path %>

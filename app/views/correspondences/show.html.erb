@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date received:</b>
+  <%= @correspondence.date_received %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @correspondence.project %>
+</p>
+
+<p>
+  <b>Correspondence type:</b>
+  <%= @correspondence.correspondence_type %>
+</p>
+
+<p>
+  <b>Representative:</b>
+  <%= @correspondence.representative %>
+</p>
+
+<p>
+  <b>Stakeholder:</b>
+  <%= @correspondence.stakeholder %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%= @correspondence.subject %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @correspondence.comment %>
+</p>
+
+<p>
+  <b>Risk:</b>
+  <%= @correspondence.risk %>
+</p>
+
+
+<%= link_to 'Edit', edit_correspondence_path(@correspondence) %> |
+<%= link_to 'Back', correspondences_path %>

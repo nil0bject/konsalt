@@ -1,0 +1,37 @@
+<h1>Listing correspondences</h1>
+
+<table>
+  <tr>
+    <th>Date received</th>
+    <th>Project</th>
+    <th>Correspondence type</th>
+    <th>Representative</th>
+    <th>Stakeholder</th>
+    <th>Subject</th>
+    <th>Comment</th>
+    <th>Risk</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @correspondences.each do |correspondence| %>
+  <tr>
+    <td><%= correspondence.date_received %></td>
+    <td><%= correspondence.project %></td>
+    <td><%= correspondence.correspondence_type %></td>
+    <td><%= correspondence.representative %></td>
+    <td><%= correspondence.stakeholder %></td>
+    <td><%= correspondence.subject %></td>
+    <td><%= correspondence.comment %></td>
+    <td><%= correspondence.risk %></td>
+    <td><%= link_to 'Show', correspondence %></td>
+    <td><%= link_to 'Edit', edit_correspondence_path(correspondence) %></td>
+    <td><%= link_to 'Destroy', correspondence, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Correspondence', new_correspondence_path %>

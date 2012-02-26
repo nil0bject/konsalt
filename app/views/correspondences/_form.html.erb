@@ -1,0 +1,49 @@
+<%= form_for(@correspondence) do |f| %>
+  <% if @correspondence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@correspondence.errors.count, "error") %> prohibited this correspondence from being saved:</h2>
+
+      <ul>
+      <% @correspondence.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date_received %><br />
+    <%= f.datetime_select :date_received %>
+  </div>
+  <div class="field">
+    <%= f.label :project %><br />
+    <%= collection_select :correspondence, :project_id, Project.all.collect{|p| [p[:id], "#{p[:number]}:#{p[:name]}"]}, :first, :last, {:include_blank => 'Please Select'} %>
+  </div>
+  <div class="field">
+    <%= f.label :correspondence_type %><br />
+    <%= collection_select :correspondence, :correspondence_type_id, CorrespondenceType.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :representative %><br />
+    <%= f.select "representative_id", "representative_id", {}, {:disabled=>true} %>
+  </div>
+  <div class="field">
+    <%= f.label :stakeholder %><br />
+    <%= collection_select :correspondence, :stakeholder_id, Stakeholder.all, :id, :organisation %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :risk %><br />
+    <%= f.text_field :risk %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

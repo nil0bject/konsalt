@@ -1,0 +1,68 @@
+<%= form_for @project do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :number %><br />
+    <%= f.text_field :number %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.select :state, {:QLD=>'qld', :NSW=>'nsw', :ACT=>'act', :NT=>'nt', :VIC=>'vic', :WA=>'wa', :SA=>'sa'}.sort %>
+  </div>
+  <div class="field">
+    <%= f.label :region %><br />
+    <%= f.text_field :region %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="representatives">
+    <select id='project_representative_ids' name='project[representative_ids][]' multiple="multiple" style='visibility:hidden;'>
+    <% @project.representatives.each do |representative| %>
+      <option id="<%= representative[:id] %>" value='<%= representative[:id] %>' selected="selected" />
+    <% end %>
+    </select>
+    <%= select :stakeholder, :organisation, Stakeholder.all.collect {|s| [ s[:organisation], s[:id] ] }, { :include_blank => true } %>
+    <select id='stakeholder_representatives' multiple="multiple"></select>
+    <div id='project_representatives_add'>
+      Add
+    </div>
+    <table>
+      <% @project.representatives.each do |representative| %>
+        <tr class="<%= cycle("even", "odd") %>" representative_id="<%= representative[:id] %>">
+          <td>
+            <%= link_to "#{ representative[:first_name] } #{ representative[:surname] }", representative_path(representative) %>
+          </td>
+          <td>
+            <%= mail_to representative.stakeholder[:email], representative.stakeholder[:organisation] %>
+          </td>
+          <td>
+            <%= link_to representative[:mobile], "tel:#{representative[:mobile].gsub(/\s+/, "")}" %>
+          </td>
+          <td>
+            <div class='project_representative_remove'>Remove</div>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div>
+    <%= f.button :submit, :as => :button %>
+    <%= f.button :cancel, :as => :link %>
+  </div>
+<% end %>

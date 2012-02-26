@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date_received: 2012-02-25
+  project: 
+  correspondence_type: 
+  representative: 
+  stakeholder: 
+  subject: MyString
+  comment: MyText
+  risk: 
+
+two:
+  date_received: 2012-02-25
+  project: 
+  correspondence_type: 
+  representative: 
+  stakeholder: 
+  subject: MyString
+  comment: MyText
+  risk: 
