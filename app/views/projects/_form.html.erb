@@ -31,31 +31,30 @@
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
-  <div class="representatives">
-    <select id='project_representative_ids' name='project[representative_ids][]' multiple="multiple" style='visibility:hidden;'>
-    <% @project.representatives.each do |representative| %>
-      <option id="<%= representative[:id] %>" value='<%= representative[:id] %>' selected="selected" />
-    <% end %>
+  <div class="stakeholders">
+    <select id='project_stakeholder_ids' name='project[stakeholder_ids][]' multiple="multiple" hidden="hidden">
+      <% @project.stakeholders.each do |stakeholder| %>
+        <option id="<%= stakeholder[:id] %>" value='<%= stakeholder[:id] %>' selected="selected" />
+      <% end %>
     </select>
-    <%= select :stakeholder, :organisation, Stakeholder.all.collect {|s| [ s[:organisation], s[:id] ] }, { :include_blank => true } %>
-    <select id='stakeholder_representatives' multiple="multiple"></select>
-    <div id='project_representatives_add'>
+    <%= select :stakeholder, :organisation, Stakeholder.all.collect {|s| [ s[:organisation], s[:id] ] }, {}, { :multiple=>true } %>
+    <div id='project_stakeholders_add'>
       Add
     </div>
     <table>
-      <% @project.representatives.each do |representative| %>
-        <tr class="<%= cycle("even", "odd") %>" representative_id="<%= representative[:id] %>">
+      <% @project.stakeholders.each do |stakeholder| %>
+        <tr class="<%= cycle("even", "odd") %>" stakeholder_id="<%= stakeholder[:id] %>">
           <td>
-            <%= link_to "#{ representative[:first_name] } #{ representative[:surname] }", representative_path(representative) %>
+            <%= link_to "#{ stakeholder[:first_name] } #{ stakeholder[:surname] }", stakeholder_path(stakeholder) %>
           </td>
           <td>
-            <%= mail_to representative.stakeholder[:email], representative.stakeholder[:organisation] %>
+            <%= mail_to stakeholder[:email], stakeholder[:organisation] %>
           </td>
           <td>
-            <%= link_to representative[:mobile], "tel:#{representative[:mobile].gsub(/\s+/, "")}" %>
+            <%= link_to stakeholder[:phone1], "tel:#{stakeholder[:phone1].gsub(/\s+/, "")}" %>
           </td>
           <td>
-            <div class='project_representative_remove'>Remove</div>
+            <div class='project_stakeholder_remove'>Remove</div>
           </td>
         </tr>
       <% end %>
