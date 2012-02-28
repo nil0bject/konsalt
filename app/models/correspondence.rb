@@ -3,4 +3,5 @@ class Correspondence < ActiveRecord::Base
   belongs_to :representative
   belongs_to :stakeholder
   belongs_to :risk
+  belongs_to :project
 end

@@ -24,12 +24,12 @@
     <%= collection_select :correspondence, :correspondence_type_id, CorrespondenceType.all, :id, :name %>
   </div>
   <div class="field">
-    <%= f.label :representative %><br />
-    <%= f.select "representative_id", "representative_id", {}, {:disabled=>true} %>
+    <%= f.label :stakeholder %><br />
+    <%= f.select "stakeholder_id", "stakeholder_id", { }, {:disabled=>true} %>
   </div>
   <div class="field">
-    <%= f.label :stakeholder %><br />
-    <%= collection_select :correspondence, :stakeholder_id, Stakeholder.all, :id, :organisation %>
+    <%= f.label :representative %><br />
+    <%= f.select "representative_id", "representative_id", {}, {:disabled=>true} %>
   </div>
   <div class="field">
     <%= f.label :subject %><br />
@@ -41,7 +41,7 @@
   </div>
   <div class="field">
     <%= f.label :risk %><br />
-    <%= f.text_field :risk %>
+    <%= collection_select :correspondence, :risk_id, Risk.all, :id, :name %>
   </div>
   <div class="actions">
     <%= f.submit %>

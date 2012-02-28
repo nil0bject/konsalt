@@ -9,6 +9,7 @@ Konsalt::Application.routes.draw do
 
   resources :projects do
     resources :representatives
+    resources :stakeholders
   end
 
   resources :representatives
