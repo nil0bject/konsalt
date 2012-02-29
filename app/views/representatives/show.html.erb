@@ -12,12 +12,12 @@
 
 <p>
   <b>Stakeholder:</b>
-  <%= @representative.stakeholder %>
+  <%= link_to @representative.stakeholder.organisation, @representative.stakeholder %>
 </p>
 
 <p>
   <b>Mobile:</b>
-  <%= @representative.mobile %>
+  <%= link_to @representative.mobile, "tel:#{ @representative.mobile.gsub(/\s+/, "") }" %>
 </p>
 
 <p>

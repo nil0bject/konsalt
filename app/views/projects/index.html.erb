@@ -7,6 +7,7 @@
     <th>State</th>
     <th>Region</th>
     <th>Description</th>
+    <th>Stakeholders</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,6 +20,13 @@
     <td><%= project.state %></td>
     <td><%= project.region %></td>
     <td><%= project.description %></td>
+    <td>
+      <% project.stakeholders.each do |stakeholder| %>
+      <li>
+        <%= link_to stakeholder[:organisation], stakeholder %>
+      </li>
+      <% end %>
+    </td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>

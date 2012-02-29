@@ -7,22 +7,22 @@
 
 <p>
   <b>Project:</b>
-  <%= @correspondence.project %>
+  <%= link_to @correspondence.project.name, @correspondence.project %>
 </p>
 
 <p>
   <b>Correspondence type:</b>
-  <%= @correspondence.correspondence_type %>
+  <%= link_to @correspondence.correspondence_type.name, @correspondence.correspondence_type %>
 </p>
 
 <p>
   <b>Representative:</b>
-  <%= @correspondence.representative %>
+  <%= link_to "#{@correspondence.representative.first_name} #{@correspondence.representative.surname}", @correspondence.representative %>
 </p>
 
 <p>
   <b>Stakeholder:</b>
-  <%= @correspondence.stakeholder %>
+  <%= link_to @correspondence.stakeholder.organisation, @correspondence.stakeholder %>
 </p>
 
 <p>
@@ -37,7 +37,7 @@
 
 <p>
   <b>Risk:</b>
-  <%= @correspondence.risk %>
+  <%= link_to @correspondence.risk.name, @correspondence.risk %>
 </p>
 
 

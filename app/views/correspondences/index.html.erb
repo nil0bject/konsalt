@@ -18,13 +18,13 @@
 <% @correspondences.each do |correspondence| %>
   <tr>
     <td><%= correspondence.date_received %></td>
-    <td><%= correspondence.project %></td>
-    <td><%= correspondence.correspondence_type %></td>
-    <td><%= correspondence.representative %></td>
-    <td><%= correspondence.stakeholder %></td>
+    <td><%= correspondence.project.name %></td>
+    <td><%= link_to correspondence.correspondence_type.name, correspondence.correspondence_type %></td>
+    <td><%= link_to "#{correspondence.representative.first_name} #{correspondence.representative.surname}", correspondence.representative %></td>
+    <td><%= link_to correspondence.stakeholder.organisation, correspondence.stakeholder %></td>
     <td><%= correspondence.subject %></td>
     <td><%= correspondence.comment %></td>
-    <td><%= correspondence.risk %></td>
+    <td><%= link_to correspondence.risk.name, correspondence.risk %></td>
     <td><%= link_to 'Show', correspondence %></td>
     <td><%= link_to 'Edit', edit_correspondence_path(correspondence) %></td>
     <td><%= link_to 'Destroy', correspondence, confirm: 'Are you sure?', method: :delete %></td>
