@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120226024934) do
+ActiveRecord::Schema.define(:version => 20120229095950) do
 
   create_table "correspondence_types", :force => true do |t|
     t.string   "name"
@@ -55,10 +55,8 @@ ActiveRecord::Schema.define(:version => 20120226024934) do
   end
 
   create_table "projects_stakeholders", :force => true do |t|
-    t.integer  "project_id"
-    t.integer  "stakeholder_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer "project_id"
+    t.integer "stakeholder_id"
   end
 
   create_table "representatives", :force => true do |t|
