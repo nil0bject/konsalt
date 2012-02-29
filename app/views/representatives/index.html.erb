@@ -16,8 +16,8 @@
   <tr>
     <td><%= representative.first_name %></td>
     <td><%= representative.surname %></td>
-    <td><%= representative.stakeholder %></td>
-    <td><%= representative.mobile %></td>
+    <td><%= link_to representative.stakeholder.organisation,representative.stakeholder %></td>
+    <td><%= link_to representative.mobile, "tel:#{ representative.mobile.gsub(/\s+/, "") }" %></td>
     <td><%= representative.notes %></td>
     <td><%= link_to 'Show', representative %></td>
     <td><%= link_to 'Edit', edit_representative_path(representative) %></td>
