@@ -36,6 +36,16 @@ class StakeholdersController < ApplicationController
   def edit
     @stakeholder = Stakeholder.find(params[:id])
   end
+  
+  # GET /stakeholders/1/representatives
+  def representatives
+    @representatives = Stakeholder.find(params[:id]).representatives
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @representatives }
+    end
+  end
 
   # POST /stakeholders
   # POST /stakeholders.json

@@ -1,4 +1,4 @@
-<%= form_for @project do |f| %>
+<%= semantic_form_for @project do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -11,57 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :number %><br />
-    <%= f.text_field :number %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br />
-    <%= f.select :state, {:QLD=>'qld', :NSW=>'nsw', :ACT=>'act', :NT=>'nt', :VIC=>'vic', :WA=>'wa', :SA=>'sa'}.sort %>
-  </div>
-  <div class="field">
-    <%= f.label :region %><br />
-    <%= f.text_field :region %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="stakeholders">
-    <select id='project_stakeholder_ids' name='project[stakeholder_ids][]' multiple="multiple" hidden="hidden">
-      <% @project.stakeholders.each do |stakeholder| %>
-        <option id="<%= stakeholder[:id] %>" value='<%= stakeholder[:id] %>' selected="selected" />
-      <% end %>
-    </select>
-    <%= select :stakeholder, :organisation, Stakeholder.all.collect {|s| [ s[:organisation], s[:id] ] }, {}, { :multiple=>true } %>
-    <div id='project_stakeholders_add'>
-      Add
-    </div>
-    <table>
-      <% @project.stakeholders.each do |stakeholder| %>
-        <tr class="<%= cycle("even", "odd") %>" stakeholder_id="<%= stakeholder[:id] %>">
-          <td>
-            <%= link_to "#{ stakeholder[:first_name] } #{ stakeholder[:surname] }", stakeholder_path(stakeholder) %>
-          </td>
-          <td>
-            <%= mail_to stakeholder[:email], stakeholder[:organisation] %>
-          </td>
-          <td>
-            <%= link_to stakeholder[:phone1], "tel:#{stakeholder[:phone1].gsub(/\s+/, "")}" %>
-          </td>
-          <td>
-            <div class='project_stakeholder_remove'>Remove</div>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-  <div>
-    <%= f.button :submit, :as => :button %>
-    <%= f.button :cancel, :as => :link %>
-  </div>
+  <%= f.inputs :name => "Details" do %>
+    <%= f.input :number %>
+    <%= f.input :name %>
+    <%= f.input :state, :as => :select, :collection => {:QLD=>'qld', :NSW=>'nsw', :ACT=>'act', :NT=>'nt', :VIC=>'vic', :WA=>'wa', :SA=>'sa'}.sort %>
+    <%= f.input :region %>
+    <%= f.input :description %>
+    <%= f.input :stakeholders, :as=>:check_boxes %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :button %>
+    <%= f.action :cancel, :as => :link %>
+  <% end %>
 <% end %>

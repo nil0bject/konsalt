@@ -15,8 +15,10 @@ Konsalt::Application.routes.draw do
   resources :representatives
 
   resources :stakeholders do
-    resources :representatives
+#    resources :representatives
   end
+  
+  match 'stakeholders/:id/representatives' => 'stakeholders#representatives'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

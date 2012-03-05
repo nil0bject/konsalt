@@ -1,4 +1,4 @@
-<%= form_for(@correspondence) do |f| %>
+<%= semantic_form_for @correspondence do |f| %>
   <% if @correspondence.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@correspondence.errors.count, "error") %> prohibited this correspondence from being saved:</h2>
@@ -11,39 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :date_received %><br />
-    <%= f.datetime_select :date_received %>
-  </div>
-  <div class="field">
-    <%= f.label :project %><br />
-    <%= collection_select :correspondence, :project_id, Project.all.collect{|p| [p[:id], "#{p[:number]}:#{p[:name]}"]}, :first, :last, {:include_blank => 'Please Select'} %>
-  </div>
-  <div class="field">
-    <%= f.label :correspondence_type %><br />
-    <%= collection_select :correspondence, :correspondence_type_id, CorrespondenceType.all, :id, :name %>
-  </div>
-  <div class="field">
-    <%= f.label :stakeholder %><br />
-    <%= f.select "stakeholder_id", "stakeholder_id", { }, {:disabled=>true} %>
-  </div>
-  <div class="field">
-    <%= f.label :representative %><br />
-    <%= f.select "representative_id", "representative_id", {}, {:disabled=>true} %>
-  </div>
-  <div class="field">
-    <%= f.label :subject %><br />
-    <%= f.text_field :subject %>
-  </div>
-  <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
-  </div>
-  <div class="field">
-    <%= f.label :risk %><br />
-    <%= collection_select :correspondence, :risk_id, Risk.all, :id, :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.inputs :name => "Details" do %>
+    <%= f.input :date_received %>
+    <%= f.input :project %>
+    <%= f.input :correspondence_type %>
+    <%= f.input :stakeholder, :collection=>ProjectsStakeholders.where("project_id=#{@correspondence[:project_id]}").collect {|ps| [ps.stakeholder[:organisation], ps.stakeholder[:id]]} %>
+    <%= f.input :representative, :collection=>Representative.where(:stakeholder_id=>@correspondence[:stakeholder_id]).collect {|r| ["#{r[:first_name]} #{r[:surname]}", r[:id]]} %>
+    <%= f.input :subject %>
+    <%= f.input :comment %>
+    <%= f.input :risk %>
+  <% end %>
+  
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :button %>
+    <%= f.action :cancel, :as => :link %>
+  <% end %>    
 <% end %>
