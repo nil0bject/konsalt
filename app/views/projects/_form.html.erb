@@ -17,7 +17,7 @@
     <%= f.input :state, :as => :select, :collection => {:QLD=>'qld', :NSW=>'nsw', :ACT=>'act', :NT=>'nt', :VIC=>'vic', :WA=>'wa', :SA=>'sa'}.sort %>
     <%= f.input :region %>
     <%= f.input :description %>
-    <%= f.input :stakeholders, :as=>:check_boxes %>
+    <%= f.input :stakeholders, :as=>:check_boxes, :member_label => :organisation %>
   <% end %>
 
   <%= f.actions do %>
